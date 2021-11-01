@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static implement.MPC.Media;
+using static implement.MPC.MediaAndReport;
+//using System.Reflection;
+//using CustomCodeAttributes;
 
 namespace implement.MPC
 {
@@ -14,24 +16,23 @@ namespace implement.MPC
 
     }
 
-    public class StoreBase<TMedia,TReport> : IStoreBase<TMedia, TReport>
+    public class StoreBase<T, I> : IStoreBase<T, I>
     {
-        public TMedia TMedia { get; set; }
-        public TReport TReport { get; set; }
+        public T RawMedia { get; set; }
+        public I ReportInfo { get; set; }
 
-        public TReport ConverReport(TMedia rawMedia)
+        public virtual void ConverMedia(T rawMedia)
         {
-            Attribute[] attrs = Attribute.GetCustomAttributes(rawMedia.GetType());
-            typeof(T).GetProperty("Name")
-
-            foreach (var attr in attrs)
+            var properties = rawMedia.GetType().GetProperties().ToList();
+            foreach (var property in properties)
             {
-                switch attr.Name
-                    case 
-                //tofo 資料處理
-            }
+                System.Attribute attr = property.GetCustomAttributes(rawMedia.GetType(), true).FirstOrDefault();
+                switch (attr.)
+                {
+                    case attr is StringLength:
 
-            return (TReport)Convert.ChangeType(new Report711(), typeof(T));
+                }
+            }
         }
     }
 
