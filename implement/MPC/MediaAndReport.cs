@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace implement.MPC
+namespace Implement.MPC
 {
     public class MediaAndReport
     {

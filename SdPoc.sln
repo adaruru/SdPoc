@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SdPoc", "SdPoc\SdPoc.csproj", "{176A41C8-A342-4BB0-834D-CED10244D839}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "implement", "implement\implement.csproj", "{8F0F8CE4-6DFC-4384-9089-E167762CE274}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Implement", "implement\Implement.csproj", "{8F0F8CE4-6DFC-4384-9089-E167762CE274}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

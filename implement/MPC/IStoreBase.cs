@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static implement.MPC.MediaAndReport;
+using static Implement.MPC.MediaAndReport;
 //using System.Reflection;
 //using CustomCodeAttributes;
 
-namespace implement.MPC
+namespace Implement.MPC
 {
     public interface IStoreBase<T, I>
     {

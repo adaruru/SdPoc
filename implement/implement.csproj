@@ -7,8 +7,8 @@
     <ProjectGuid>{8F0F8CE4-6DFC-4384-9089-E167762CE274}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>implement</RootNamespace>
-    <AssemblyName>implement</AssemblyName>
+    <RootNamespace>Implement</RootNamespace>
+    <AssemblyName>Implement</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -42,10 +42,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MPC\DataAttributes\MediaDecimal.cs" />
+    <Compile Include="MPC\DataAttributes\MediaInteger.cs" />
+    <Compile Include="MPC\DataAttributes\MediaString.cs" />
+    <Compile Include="MPC\DTOMedias\BaseStore.cs" />
+    <Compile Include="MPC\DTOMedias\Store711.cs" />
+    <Compile Include="MPC\DTOMedias\StoreFamily.cs" />
+    <Compile Include="MPC\DTOMedias\StoreHL.cs" />
+    <Compile Include="MPC\DTOMedias\StoreOK.cs" />
     <Compile Include="MPC\IStoreBase.cs" />
-    <Compile Include="MPC\Media.cs" />
+    <Compile Include="MPC\MediaAndReport.cs" />
     <Compile Include="MPC\Store.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

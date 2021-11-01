@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static implement.MPC.MediaAndReport;
+using static Implement.MPC.MediaAndReport;
 
-namespace implement.MPC
+
+namespace Implement.MPC
 {
     public class Store711<T, I> : StoreBase<T, I>
     {
