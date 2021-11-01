@@ -1,4 +1,5 @@
-﻿using Implement.MPC.DTOMedias;
+﻿using Implement.MPC.DataAttributes;
+using Implement.MPC.DTOMedias;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,15 +26,28 @@ namespace Implement.MPC
         /// <param name="rawMedia"></param>
         public T ConverMedia(byte[] rawMedia)
         {
-            var properties = rawMedia.GetType().GetProperties().ToList();
-            
+            var storeInfo = new Store711();
+            var properties = storeInfo.GetType().GetProperties().ToList();
+
             foreach (var property in properties)
             {
                 //Todo data process
-                System.Attribute attr = property.GetCustomAttributes(rawMedia.GetType(), true).FirstOrDefault();
-                switch (attr.)
+                var attr = property.GetCustomAttributes(typeof(Store711), true).FirstOrDefault();
+                switch (attr.GetType().Name)
                 {
-                    case attr is StringLength:
+                    case "MediaDecimal":
+                        //TODO:
+
+                        break;
+                    case "MediaInteger":
+                        //TODO:
+                        break;
+                    case "MediaString":
+                        //TODO:
+                        break;
+                    default:
+                        //TODO:
+                        break;
 
                 }
 
