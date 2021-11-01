@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Models.DataAttributes;
+using Implement.MPC.DataAttributes;
 
-namespace Models.DTOMedias
+namespace Implement.MPC.DTOMedias
 {
     /// <summary>
     /// 超商日終媒體檔(通用)

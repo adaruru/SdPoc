@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models.DataAttributes
+namespace Implement.MPC.DataAttributes
 {
     /// <summary>
     /// 媒體檔文字欄位定義

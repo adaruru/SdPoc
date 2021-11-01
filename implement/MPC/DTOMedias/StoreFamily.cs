@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models.DTOMedias
+namespace Implement.MPC.DTOMedias
 {
     /// <summary>
     /// 全家媒體檔

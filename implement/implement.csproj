@@ -51,7 +51,6 @@
     <Compile Include="MPC\DTOMedias\StoreHL.cs" />
     <Compile Include="MPC\DTOMedias\StoreOK.cs" />
     <Compile Include="MPC\IStoreBase.cs" />
-    <Compile Include="MPC\MediaAndReport.cs" />
     <Compile Include="MPC\Store.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
