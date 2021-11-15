@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReverseProxyApplication
 {
+    //ref https://auth0.com/blog/building-a-reverse-proxy-in-dot-net-core/
     public class ProxyMiddleware
     {
         private static readonly HttpClient _httpClient = new HttpClient();
