@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProxyHost", "ProxyHost\ProxyHost.csproj", "{C07AC318-A893-4355-A4D6-8B1C0F41FE0F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneralAgency", "GeneralAgency\GeneralAgency.csproj", "{63F0CCA9-E213-4019-A604-223BF2D6B1BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeneralAgency", "GeneralAgency\GeneralAgency.csproj", "{63F0CCA9-E213-4019-A604-223BF2D6B1BA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Proxy", "AspNetCore.Proxy\AspNetCore.Proxy.csproj", "{0CD0060D-25E0-4274-A241-9E453D0FDE2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ap2", "Ap2\Ap2.csproj", "{11864C7A-845A-4484-9D05-EF713A827935}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ap2", "Ap2\Ap2.csproj", "{11864C7A-845A-4484-9D05-EF713A827935}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ap1", "Ap1\Ap1.csproj", "{23D6D4A7-A0B5-4BEC-A5D4-898B25064431}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ap1", "Ap1\Ap1.csproj", "{23D6D4A7-A0B5-4BEC-A5D4-898B25064431}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyHost", "ProxyHost\ProxyHost.csproj", "{B9D08D1E-6421-4DE3-9EA8-02BC6FDB2BA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C07AC318-A893-4355-A4D6-8B1C0F41FE0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C07AC318-A893-4355-A4D6-8B1C0F41FE0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C07AC318-A893-4355-A4D6-8B1C0F41FE0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C07AC318-A893-4355-A4D6-8B1C0F41FE0F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{63F0CCA9-E213-4019-A604-223BF2D6B1BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{63F0CCA9-E213-4019-A604-223BF2D6B1BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63F0CCA9-E213-4019-A604-223BF2D6B1BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{23D6D4A7-A0B5-4BEC-A5D4-898B25064431}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23D6D4A7-A0B5-4BEC-A5D4-898B25064431}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23D6D4A7-A0B5-4BEC-A5D4-898B25064431}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9D08D1E-6421-4DE3-9EA8-02BC6FDB2BA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9D08D1E-6421-4DE3-9EA8-02BC6FDB2BA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9D08D1E-6421-4DE3-9EA8-02BC6FDB2BA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9D08D1E-6421-4DE3-9EA8-02BC6FDB2BA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
