@@ -1,6 +1,6 @@
 using System;
 
-namespace Ap1
+namespace Ap1.Model
 {
     public class WeatherForecast
     {
