@@ -12,7 +12,7 @@ namespace Ap2.Controllers
     public class Ap2ServiceController : Controller
     {
         [HttpGet]
-        public ResultPack Get()
+        public ActionResult<ResultPack> GetIndex()
         {
             var result = new ResultPack()
             {

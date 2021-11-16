@@ -11,7 +11,7 @@ namespace ProxyHost.Controllers
     public class ProxyHostController : Controller
     {
         [HttpGet]
-        public object Index()
+        public ActionResult<object> Index()
         {
             var result = new
             {

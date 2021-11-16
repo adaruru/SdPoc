@@ -13,7 +13,7 @@ namespace Ap1.Controllers
     public class Ap1ServiceController : Controller
     {
         [HttpGet]
-        public ResultPack Index()
+        public ActionResult<ResultPack> Index()
         {
             var result = new ResultPack()
             {
