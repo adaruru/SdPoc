@@ -11,12 +11,13 @@ namespace ProxyHost.Controllers
     public class ProxyHostController : Controller
     {
         [HttpGet]
-        public object Get()
+        public object Index()
         {
-            return new
+            var result = new
             {
                 Data = "ProxyHost"
             };
+            return result;
         }
     }
 }
