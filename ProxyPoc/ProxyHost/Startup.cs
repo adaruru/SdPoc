@@ -12,6 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNetCore.Proxy.Options;
+using Microsoft.AspNetCore.Http;
+using ProxyHost.Middleware;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace ProxyHost
 {
@@ -27,7 +30,13 @@ namespace ProxyHost
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddProxies();
+
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders =
+                    ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            });
+            services.AddProxies();//2 third party AspNetCore.Proxy
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -45,31 +54,35 @@ namespace ProxyHost
 
             #region middleware
 
-            //redirect
-            //app.RunProxy(proxy => proxy.UseHttp("https://localhost:44391/Ap1Service"));
+            app.UseMiddleware<ProxyMiddleware>();
+
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync("test");
+            //});
+
+            app.Use(async (context, next) =>
+            {
+                await context.Response.WriteAsync($"{nameof(ProxyMiddleware)} in. \r\n");
+                await next.Invoke();
+                await context.Response.WriteAsync($"{nameof(ProxyMiddleware)} out. \r\n");
+            });
 
             #endregion
 
-            app.UseEndpoints(endpoints =>
-            {
-                //僅判斷Controller為路由
-                //endpoints.MapControllers();
+            #region Core.Proxy
+            //redirect
+            app.RunProxy(proxy => proxy.UseHttp("https://localhost:44391/Ap1Service"));
 
-                //設定路由模式
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
-
-            //app.RunProxy(proxy => proxy
-            //  .UseHttp((context, args) =>
-            //  {
-            //      if (context.Request.Path.StartsWithSegments("/test"))
-            //      {
-            //          return "https://localhost:44391/Ap1Service";
-            //      }
-            //      return "https://localhost:44391/Ap1Service";
-            //  }));
+            app.RunProxy(proxy => proxy
+              .UseHttp((context, args) =>
+              {
+                  if (context.Request.Path.StartsWithSegments("/test"))
+                  {
+                      return "https://localhost:44391/Ap1Service";
+                  }
+                  return "https://localhost:44391/Ap1Service";
+              }));
 
             app.UseProxies(proxies =>
             {
@@ -85,7 +98,20 @@ namespace ProxyHost
 
                 proxies.Map("/api/v1/{Ap1}", proxy => proxy.UseHttp((context, args) => $"https://jsonplaceholder.typicode.com/comments/{args["postId"]}", builder => builder.WithHttpClientName("myClientName")));
             });
+            #endregion
 
+
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    //僅判斷Controller為路由
+            //    //endpoints.MapControllers();
+
+            //    //設定路由模式
+            //    endpoints.MapControllerRoute(
+            //        name: "default",
+            //        pattern: "{controller=Home}/{action=Index}/{id?}");
+            //});
 
         }
     }

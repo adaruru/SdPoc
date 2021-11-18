@@ -18,8 +18,9 @@ namespace ProxyHost.Middleware
 
         public async Task Invoke(HttpContext context)
         {
-            var targetUri = BuildTargetUri(context.Request);
+            // var targetUri = BuildTargetUri(context.Request);
 
+            var targetUri = BuildTargetUri(context.Request);
             if (targetUri != null)
             {
                 var targetRequestMessage = CreateTargetMessage(context, targetUri);
@@ -94,10 +95,19 @@ namespace ProxyHost.Middleware
         private Uri BuildTargetUri(HttpRequest request)
         {
             Uri targetUri = null;
-
-            if (request.Path.StartsWithSegments("/googleforms", out var remainingPath))
+            switch (true)
             {
-                targetUri = new Uri("https://docs.google.com/forms" + remainingPath);
+                case true when request.Path.StartsWithSegments("/googleforms", out var remainingPath):
+                    targetUri = new Uri("https://docs.google.com/forms" + remainingPath);
+                    break;
+                case true when request.Path.StartsWithSegments("/Ap1", out var remainingPath):
+                    targetUri = new Uri("https://localhost:44391/Ap1Service" + remainingPath);
+                    break;
+                case true when request.Path.StartsWithSegments("/Ap2", out var remainingPath):
+                    targetUri = new Uri("https://localhost:49175/Ap2Service" + remainingPath);
+                    break;
+                default:
+                    break;
             }
 
             return targetUri;
