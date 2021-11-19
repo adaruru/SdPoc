@@ -1,17 +1,18 @@
 {
-  "proxySetting": [
+  "Version" : "0.0.0"
+  "RouteSettings": [
     {
-      "clientName": "",
-      "serviceLine": "",
-      "businesNo": "",
-      "hostIp": ""
+      "ClientName": "",
+      "ServiceLine": "Ap1",
+      "BusinesNo": "Ap1",
+      "TargetUri": "https://localhost:49157/Ap1Service"
     },
     {
-      "clientName": "",
-      "serviceLine": "",
-      "businesNo": "",
-      "hostIp": ""
+      "ClientName": "",
+      "ServiceLine": "Ap2",
+      "BusinesNo": "",
+      "TargetUri": "https://localhost:49159/Ap2Service"
     }
   ]
- 
+
 }

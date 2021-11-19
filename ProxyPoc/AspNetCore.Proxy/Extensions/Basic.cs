@@ -12,7 +12,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 // For unit tests.
-[assembly:InternalsVisibleTo("AspNetCore.Proxy.Tests")]
+[assembly: InternalsVisibleTo("AspNetCore.Proxy.Tests")]
 
 namespace AspNetCore.Proxy
 {
@@ -33,7 +33,7 @@ namespace AspNetCore.Proxy
         {
             services.AddRouting();
 
-            if(configureProxyClient != null)
+            if (configureProxyClient != null)
                 services.AddHttpClient(Helpers.HttpProxyClientName, configureProxyClient);
             else
                 services.AddHttpClient(Helpers.HttpProxyClientName);
@@ -54,11 +54,12 @@ namespace AspNetCore.Proxy
         public static IApplicationBuilder UseProxies(this IApplicationBuilder app, Action<IProxiesBuilder> builderAction)
         {
             // TODO: Could make use of `UseEndpoints` in ASP.NET Core 3?
-            app.UseRouter(builder => {
+            app.UseRouter(builder =>
+            {
                 var proxiesBuilder = ProxiesBuilder.Instance;
                 builderAction(proxiesBuilder);
 
-                foreach(var proxy in proxiesBuilder.Build())
+                foreach (var proxy in proxiesBuilder.Build())
                 {
                     builder.MapMiddlewareRoute(proxy.Route, proxyApp => proxyApp.Run(context => context.ExecuteProxyOperationAsync(proxy)));
                 }
@@ -79,10 +80,14 @@ namespace AspNetCore.Proxy
             var proxy = proxyBuilder.Build();
 
             if (proxy.HttpProxy?.EndpointComputer.Clone() is EndpointComputerToValueTask oldHttpEndpointComputer)
+            {
                 proxy.HttpProxy.EndpointComputer = GetRunProxyComputer(oldHttpEndpointComputer);
-            if (proxy.WsProxy?.EndpointComputer.Clone() is EndpointComputerToValueTask oldWsEndpointComputer)
-                proxy.WsProxy.EndpointComputer = GetRunProxyComputer(oldWsEndpointComputer);
+            }
 
+            if (proxy.WsProxy?.EndpointComputer.Clone() is EndpointComputerToValueTask oldWsEndpointComputer)
+            {
+                proxy.WsProxy.EndpointComputer = GetRunProxyComputer(oldWsEndpointComputer);
+            }
             app.Run(context => context.ExecuteProxyOperationAsync(proxy));
         }
 
@@ -241,7 +246,7 @@ namespace AspNetCore.Proxy
         /// <param name="app">The ASP.NET <see cref="IApplicationBuilder"/>.</param>
         /// <param name="wsEndpointComputer">The WS endpoint to use.  This takes the form `(<see cref="HttpContext"/>, <see cref="IDictionary{String, Object}"/>) => <see cref="String"/>`.</param>
         /// <param name="wsBuilderOptionsAction">The WS options builder action to use.  This takes the form `(<see cref="IWsProxyOptionsBuilder"/>) => void`.</param>
-        public static void RunWsProxy(this IApplicationBuilder app, EndpointComputerToString wsEndpointComputer, Action<IWsProxyOptionsBuilder> wsBuilderOptionsAction = null) => 
+        public static void RunWsProxy(this IApplicationBuilder app, EndpointComputerToString wsEndpointComputer, Action<IWsProxyOptionsBuilder> wsBuilderOptionsAction = null) =>
             app.RunWsProxy(builder => builder
                 .WithEndpoint(wsEndpointComputer)
                 .WithOptions(wsBuilderOptionsAction)
@@ -313,13 +318,13 @@ namespace AspNetCore.Proxy
         internal static async Task ExecuteProxyOperationAsync(this HttpContext context, Builders.Proxy proxy)
         {
             var isWebSocket = context.WebSockets.IsWebSocketRequest;
-            if(isWebSocket && proxy.WsProxy != null)
+            if (isWebSocket && proxy.WsProxy != null)
             {
                 await context.ExecuteWsProxyOperationAsync(proxy.WsProxy).ConfigureAwait(false);
                 return;
             }
 
-            if(!isWebSocket && proxy.HttpProxy != null)
+            if (!isWebSocket && proxy.HttpProxy != null)
             {
                 await context.ExecuteHttpProxyOperationAsync(proxy.HttpProxy).ConfigureAwait(false);
                 return;

@@ -97,16 +97,17 @@ namespace ProxyHost.Middleware
             Uri targetUri = null;
             switch (true)
             {
-                case true when request.Path.StartsWithSegments("/googleforms", out var remainingPath):
-                    targetUri = new Uri("https://docs.google.com/forms" + remainingPath);
-                    break;
+                //case true when request.Path.StartsWithSegments("/googleforms", out var remainingPath):
+                //    targetUri = new Uri("https://docs.google.com/forms" + remainingPath);
+                //    break;
                 case true when request.Path.StartsWithSegments("/Ap1", out var remainingPath):
-                    targetUri = new Uri("https://localhost:44391/Ap1Service" + remainingPath);
+                    targetUri = new Uri("https://localhost:49153/Ap1Service" + remainingPath);
                     break;
                 case true when request.Path.StartsWithSegments("/Ap2", out var remainingPath):
-                    targetUri = new Uri("https://localhost:49175/Ap2Service" + remainingPath);
+                    targetUri = new Uri("https://localhost:49159/Ap2Service" + remainingPath);
                     break;
                 default:
+                    targetUri = new Uri("https://localhost:49159/Ap2Service");
                     break;
             }
 

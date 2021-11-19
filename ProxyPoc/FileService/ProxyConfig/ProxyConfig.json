@@ -1,0 +1,17 @@
+{
+  "proxySetting": [
+    {
+      "clientName": "",
+      "serviceLine": "",
+      "businesNo": "",
+      "hostIp": ""
+    },
+    {
+      "clientName": "",
+      "serviceLine": "",
+      "businesNo": "",
+      "hostIp": ""
+    }
+  ]
+ 
+}
