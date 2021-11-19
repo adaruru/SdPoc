@@ -15,7 +15,7 @@
     <ProjectReference Include="..\AspNetCore.Proxy\AspNetCore.Proxy.csproj" />
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties routeconfig_4routeconfigschema_1json__JsonSchema="https://citation-file-format.github.io/1.2.0/schema.json" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 
 </Project>

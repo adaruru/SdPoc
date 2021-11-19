@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace ProxyHost.Model
 {
-    public class ProxyConfig
+    public class ProxySetting
     {
         public string Version { get; set; }
-        public List<RouteSetting> RouteSetting { get; set; }
+        public List<RouteSetting> RouteSettings { get; set; }
     }
 
     public class RouteSetting

@@ -16,27 +16,51 @@ using Microsoft.AspNetCore.Http;
 using ProxyHost.Middleware;
 using Microsoft.AspNetCore.HttpOverrides;
 using ProxyHost.Model;
+using IHostingEnvironment = Microsoft.Extensions.Hosting.IHostingEnvironment;
+using Microsoft.Extensions.Options;
 
 namespace ProxyHost
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="env"></param>
+        public Startup(IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile($"ProxyConfig/proxysetting.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables();
+
+            //TODO : Check AddApplicationInsightsSettings no reference
+            //if (env.IsDevelopment())
+            //{
+            //    // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
+            //    builder.AddApplicationInsightsSettings(developerMode: true);
+            //}
+
+            Configuration = builder.Build();
         }
+
 
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers(options => options.EnableEndpointRouting = false);
-
+            services.Configure<ProxySetting>(options => Configuration.GetSection("ProxySetting").Bind(options));
             services.Configure<ForwardedHeadersOptions>(options =>
             {
                 options.ForwardedHeaders =
                     ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
             });
+
+            services.AddControllers(options => options.EnableEndpointRouting = false);
+
+           
             services.AddProxies();//solution 2 third party AspNetCore.Proxy
         }
 
@@ -104,8 +128,9 @@ namespace ProxyHost
 
             app.UseProxies(proxies =>
             {
-                // Bare string path mapping
-                //proxies.Map("Ap1", proxy => proxy.UseHttp("https://localhost:49157/Ap1Service"));
+                //Bare string path mapping
+                //path header 同時設定 以前行規則優先
+                proxies.Map("Ap1", proxy => proxy.UseHttp("https://localhost:49157/Ap1Service"));
                 //proxies.Map("Ap2", proxy => proxy.UseHttp("https://localhost:49159/Ap2Service"));
 
                 //Request Header mapping
@@ -113,25 +138,11 @@ namespace ProxyHost
                        .UseHttp((context, args) =>
                        {
                            var serviceLine = context.Request.Headers["ServiceLine"];
+                           
+                           var section = Configuration.GetSection(nameof(ProxySetting));
+                           var proxySettings = section.Get<ProxySetting>();
 
-                           //test route config
-                           var proxyConfig = new ProxyConfig();
-                           proxyConfig.RouteSetting = new List<RouteSetting>() {
-                                                          new RouteSetting() {
-                                                              ClientName ="Ap1",
-                                                              ServiceLine="Ap1",
-                                                              BusinesNo="Ap1",
-                                                              TargetUri = "https://localhost:49157/Ap1Service"
-                                                          },
-                                                          new RouteSetting() {
-                                                              ClientName ="Ap2",
-                                                              ServiceLine="Ap2",
-                                                              BusinesNo="Ap2",
-                                                              TargetUri = "https://localhost:49159/Ap2Service"
-                                                          }
-                                                      };
-
-                           var uri = proxyConfig.RouteSetting.FirstOrDefault(c => c.ServiceLine == serviceLine)?.TargetUri ?? "";
+                           var uri = proxySettings.RouteSettings.FirstOrDefault(c => c.ServiceLine == serviceLine)?.TargetUri ?? "";
 
                            if (context.Request.Path.StartsWithSegments("", out var remainingPath))
                            {
