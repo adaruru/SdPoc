@@ -29,12 +29,14 @@ namespace ProxyHost
         /// <param name="env"></param>
         public Startup(IHostingEnvironment env)
         {
+            //彙總所有 Config 設定檔案 與公用 Configuration
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddJsonFile($"ProxyConfig/proxysetting.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"Config/ProxySetting.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables();
+            var contentRoot = env.ContentRootPath;
 
             //TODO : Check AddApplicationInsightsSettings no reference
             //if (env.IsDevelopment())
@@ -60,7 +62,7 @@ namespace ProxyHost
 
             services.AddControllers(options => options.EnableEndpointRouting = false);
 
-           
+
             services.AddProxies();//solution 2 third party AspNetCore.Proxy
         }
 
@@ -138,7 +140,7 @@ namespace ProxyHost
                        .UseHttp((context, args) =>
                        {
                            var serviceLine = context.Request.Headers["ServiceLine"];
-                           
+
                            var section = Configuration.GetSection(nameof(ProxySetting));
                            var proxySettings = section.Get<ProxySetting>();
 

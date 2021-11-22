@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "ProxySetting": {
+      "type": "object",
+      "properties": {
+        "Version": {
+          "type": "string"
+        },
+        "RouteSettings": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "ClientName": {
+                  "type": "string"
+                },
+                "ServiceLine": {
+                  "type": "string"
+                },
+                "BusinesNo": {
+                  "type": "string"
+                },
+                "TargetUri": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "ClientName",
+                "ServiceLine",
+                "BusinesNo",
+                "TargetUri"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "ClientName": {
+                  "type": "string"
+                },
+                "ServiceLine": {
+                  "type": "string"
+                },
+                "BusinesNo": {
+                  "type": "string"
+                },
+                "TargetUri": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "ClientName",
+                "ServiceLine",
+                "BusinesNo",
+                "TargetUri"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "Version",
+        "RouteSettings"
+      ]
+    }
+  },
+  "required": [
+    "ProxySetting"
+  ]
+}

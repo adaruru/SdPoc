@@ -1,0 +1,19 @@
+{
+  "ProxySetting": {
+    "Version": "0.0.0",
+    "RouteSettings": [
+      {
+        "ClientName": "ProxySettingAp1",
+        "ServiceLine": "Ap1",
+        "BusinesNo": "Ap1",
+        "TargetUri": "https://localhost:49157/Ap1Service"
+      },
+      {
+        "ClientName": "ProxySettingAp2",
+        "ServiceLine": "Ap2",
+        "BusinesNo": "",
+        "TargetUri": "https://localhost:49159/Ap2Service"
+      }
+    ]
+  }
+}
