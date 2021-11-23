@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ap1", "Ap1\Ap1.csproj", "{2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProxyHost", "ProxyHost\ProxyHost.csproj", "{B9D08D1E-6421-4DE3-9EA8-02BC6FDB2BA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileService", "FileService\FileService.csproj", "{55FA37BE-9386-481E-AA21-0ED77DD97885}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileService", "FileService\FileService.csproj", "{55FA37BE-9386-481E-AA21-0ED77DD97885}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITSProxyService", "ITSProxyService\ITSProxyService.csproj", "{8A3505D1-2451-429A-8FD2-F936364E9CCB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{55FA37BE-9386-481E-AA21-0ED77DD97885}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55FA37BE-9386-481E-AA21-0ED77DD97885}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55FA37BE-9386-481E-AA21-0ED77DD97885}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A3505D1-2451-429A-8FD2-F936364E9CCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A3505D1-2451-429A-8FD2-F936364E9CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A3505D1-2451-429A-8FD2-F936364E9CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A3505D1-2451-429A-8FD2-F936364E9CCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
