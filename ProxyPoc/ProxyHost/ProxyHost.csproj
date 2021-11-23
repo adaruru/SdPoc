@@ -15,6 +15,11 @@
     <ProjectReference Include="..\AspNetCore.Proxy\AspNetCore.Proxy.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Lib\Biz\" />
+    <Folder Include="Lib\Common\" />
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 

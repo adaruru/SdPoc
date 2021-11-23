@@ -3,17 +3,35 @@
     "Version": "0.0.0",
     "RouteSettings": [
       {
-        "ClientName": "ProxySettingAp1",
-        "ServiceLine": "Ap1",
-        "BusinesNo": "Ap1",
-        "TargetUri": "https://localhost:49157/Ap1Service"
+        "RouteSettingId": null,
+        "priority": 1,
+        "IsDefault": false,
+        "Target": {
+          "TargetUri": [
+            "https://localhost:49163/Ap1Service",
+            "https://localhost:49163/Ap1Service"
+          ],
+          "RobinType": "1"
+        },
+        "condition": {
+          "CustomCode": "",
+          "Service": "",
+          "BusinessType": "Ap1"
+        }
+      },
+      {
+        "IsDefault": true,
+        "Target": "https://localhost:49163/IsDefault"
       },
       {
         "ClientName": "ProxySettingAp2",
-        "ServiceLine": "Ap2",
-        "BusinesNo": "",
-        "TargetUri": "https://localhost:49159/Ap2Service"
+        "TargetHost": "Ap1",
+        "BusinesNo": "Ap1",
+        "TargetUri": "https://localhost:49165/Ap2Service"
       }
     ]
   }
 }
+
+//
+
