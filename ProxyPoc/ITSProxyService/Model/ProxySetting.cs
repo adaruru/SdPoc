@@ -11,7 +11,6 @@ namespace ProxyHost.Model
 
     public class RouteSetting
     {
-
         public string ClientName { get; set; }
         public string ServiceLine { get; set; }
         public string BusinesNo { get; set; }

@@ -104,10 +104,10 @@ namespace ProxyHost.Middleware
                     targetUri = new Uri("https://localhost:49153/Ap1Service" + remainingPath);
                     break;
                 case true when request.Path.StartsWithSegments("/Ap2", out var remainingPath):
-                    targetUri = new Uri("https://localhost:49159/Ap2Service" + remainingPath);
+                    targetUri = new Uri("https://localhost:49165/Ap2Service" + remainingPath);
                     break;
                 default:
-                    targetUri = new Uri("https://localhost:49159/Ap2Service");
+                    targetUri = new Uri("https://localhost:49165/Ap2Service");
                     break;
             }
 
