@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace ProxyHost.Middleware
+namespace ITSProxyService.Middleware
 {
     public class ApRouterMiddleware
     {

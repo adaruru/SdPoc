@@ -4,7 +4,7 @@
     "RouteSettings": [
       {
         "RouteSettingId": null,
-        "priority": 1,
+        "Priority": 1,
         "IsDefault": false,
         "Target": {
           "TargetUri": [

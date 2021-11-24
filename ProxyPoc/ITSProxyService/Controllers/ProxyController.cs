@@ -4,18 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ProxyHost.Controllers
+namespace ITSProxyService.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class ProxyHostController : Controller
+    public class ProxyController : Controller
     {
         [HttpGet]
-        public ActionResult<object> Index()
+        public ActionResult<object> ProxyTest()
         {
             var result = new
             {
-                Data = "ProxyHost"
+                Data = "ProxyTest"
             };
             return result;
         }

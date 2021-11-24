@@ -1,5 +1,5 @@
 using AspNetCore.Proxy;
-using ProxyHost.Model;
+using ITSProxyService.Model;
 
 
 
@@ -7,18 +7,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.SetBasePath(builder.Environment.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
-                .AddJsonFile($"Config/ProxySetting.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"Config/ProxySettings.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables();
 
 var Env = builder.Environment;
-var Configuration = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddControllers(options => options.EnableEndpointRouting = false);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddControllers(options => options.EnableEndpointRouting = false);
+builder.Services.AddSwaggerGen();
+
 builder.Services.Configure<ProxySetting>(options => builder.Configuration.GetSection("ProxySetting").Bind(options));
 
 var app = builder.Build();
@@ -26,7 +26,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    //app.UseDeveloperExceptionPage();
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
@@ -100,7 +100,7 @@ app.UseProxies(proxies =>
            .UseHttp((context, args) =>
            {
                var serviceLine = context.Request.Headers["ServiceLine"];
-               var section = Configuration.GetSection(nameof(ProxySetting));
+               var section = builder.Configuration.GetSection(nameof(ProxySetting));
                var proxySettings = section.Get<ProxySetting>();
                var uri = proxySettings.RouteSettings.FirstOrDefault(c => c.ServiceLine == serviceLine)?.TargetUri ?? "";
                if (context.Request.Path.StartsWithSegments("", out var remainingPath))

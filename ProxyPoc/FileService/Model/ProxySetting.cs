@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ProxyHost.Model
+namespace ITSProxyService.Model
 {
     public class ProxySetting
     {
