@@ -1,4 +1,5 @@
 using AspNetCore.Proxy;
+using ITSProxyService.Middleware;
 using ITSProxyService.Model;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<ProxySetting>(options => builder.Configuration.GetSection("ProxySetting").Bind(options));
+builder.Services.AddProxies();
 
 var app = builder.Build();
 
@@ -36,26 +38,6 @@ app.UseRouting();
 // Middleware can use metadata from the matched endpoint.
 app.UseAuthentication();
 app.UseAuthorization();
-
-
-
-#region middleware template
-//app.UseMiddleware<ApRouterMiddleware>();
-//app.UseMiddleware<TestMiddleware>();
-
-//app.Use(async (context, next) =>
-//{
-//    await context.Response.WriteAsync($"{nameof(ProxyMiddleware)} in 1. \r\n");
-//    await next.Invoke();
-//    await context.Response.WriteAsync($"{nameof(ProxyMiddleware)} out 4. \r\n");
-//});
-//app.Use(async (context, next) =>
-//{
-//    await context.Response.WriteAsync($"{nameof(ProxyMiddleware)} in 2. \r\n");
-//    await next.Invoke();
-//    await context.Response.WriteAsync($"{nameof(ProxyMiddleware)} out 3. \r\n");
-//});
-#endregion
 
 #region Core.Proxy
 //url rewirte 與 UseProxies 須擇一使用
