@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "ConsoleApp_Amanda": {
+      "commandName": "Project",
+      "commandLineArgs": "type=1"
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "environmentVariables": {},
+      "distributionName": ""
+    }
+  }
+}
