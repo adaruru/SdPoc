@@ -61,6 +61,7 @@ namespace ConsoleApp_Amanda.Lib
             if (IsCpuHigh)
             {
                 Console.Write($"MailTitle: { _notifySetting.MailTitle}% content:{ _notifySetting.MailContent} mail warning sent");
+                Console.Write($"Usage Should not over: { _performanceSetting.CpuWarningUsage}% ");
             }
         }
 
