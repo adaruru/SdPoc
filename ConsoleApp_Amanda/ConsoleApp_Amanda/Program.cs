@@ -10,12 +10,10 @@ var hostBuilder = Host.CreateDefaultBuilder(args);
 
 hostBuilder.ConfigureAppConfiguration(hostConfig =>
 {
-   // hostConfig.SetBasePath(Directory.GetCurrentDirectory());
     hostConfig.AddJsonFile("notifysetting.json", optional: true, reloadOnChange: true);
     //hostConfig.AddEnvironmentVariables(prefix: "PREFIX_");
     //hostConfig.AddCommandLine(args);
 });
-
 
 hostBuilder.ConfigureServices((context, services) =>
 {
@@ -35,7 +33,6 @@ void ConfigureServices(IConfiguration configuration,
 
     services.AddSingleton<IHostedService, PerformanceCounterHostedService>();
     services.AddSingleton<IPerformanceCollector, PerformanceCollector>();
-
 }
 
 

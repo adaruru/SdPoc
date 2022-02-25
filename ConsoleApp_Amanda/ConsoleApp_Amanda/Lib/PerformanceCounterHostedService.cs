@@ -31,7 +31,7 @@ namespace ConsoleApp_Amanda.Lib
             var type = _configuration["type"];
             Console.WriteLine($"my set command line arg \"type\" : {type}");
 
-            timer = new Timer(callback, null, 0, 1000);
+            timer = new Timer(callback, null, 0, _performanceSetting.PoolIntervalSecond*1000);
             return Task.CompletedTask;
         }
 
@@ -40,10 +40,17 @@ namespace ConsoleApp_Amanda.Lib
 
             var cpuUsage = _performanceCollector.GetCpuUsage();
             var memoryUsage = _performanceCollector.GetMemoryUsage();
-            var caculator = _performanceCollector.GetMemoryUsage("caculator");
-            Console.WriteLine($"cpu : {cpuUsage}%, memory : {memoryUsage}%, caculator : {caculator}%");
-            Console.WriteLine($"_performanceSetting : {_performanceSetting.AppName[0]}");
-            Console.WriteLine($"_exitSetting : {_notifySetting.MailTitle}");
+
+            Console.WriteLine(_configuration["Message"]);
+
+            Console.Write($"cpu : {cpuUsage}%, memory : {memoryUsage}%");
+
+            foreach (var app in _performanceSetting.AppName)
+            {
+                var appUsage = _performanceCollector.GetMemoryUsage(app);
+                Console.Write($", {app} : {appUsage}%");
+            }
+            Console.WriteLine(string.Empty);
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
