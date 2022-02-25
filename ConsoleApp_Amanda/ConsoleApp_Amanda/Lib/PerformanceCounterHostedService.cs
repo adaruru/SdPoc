@@ -31,7 +31,7 @@ namespace ConsoleApp_Amanda.Lib
             var type = _configuration["type"];
             Console.WriteLine($"my set command line arg \"type\" : {type}");
 
-            timer = new Timer(callback, null, 0, _performanceSetting.PoolIntervalSecond*1000);
+            timer = new Timer(callback, null, 0, _performanceSetting.PoolIntervalSecond * 1000);
             return Task.CompletedTask;
         }
 
@@ -41,6 +41,8 @@ namespace ConsoleApp_Amanda.Lib
             var cpuUsage = _performanceCollector.GetCpuUsage();
             var memoryUsage = _performanceCollector.GetMemoryUsage();
 
+            var IsCpuHigh = cpuUsage > _performanceSetting.CpuWarningUsage;
+
             Console.WriteLine(_configuration["Message"]);
 
             Console.Write($"cpu : {cpuUsage}%, memory : {memoryUsage}%");
@@ -48,9 +50,18 @@ namespace ConsoleApp_Amanda.Lib
             foreach (var app in _performanceSetting.AppName)
             {
                 var appUsage = _performanceCollector.GetMemoryUsage(app);
-                Console.Write($", {app} : {appUsage}%");
+
+                var IsAppCpuHigh = appUsage > _performanceSetting.CpuWarningUsage;
+                var WarningMsq = IsAppCpuHigh ? "is High Usage" : string.Empty;
+
+                Console.Write($", {app} : {appUsage}%" + WarningMsq);
             }
             Console.WriteLine(string.Empty);
+
+            if (IsCpuHigh)
+            {
+                Console.Write($"MailTitle: { _notifySetting.MailTitle}% content:{ _notifySetting.MailContent} mail warning sent");
+            }
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

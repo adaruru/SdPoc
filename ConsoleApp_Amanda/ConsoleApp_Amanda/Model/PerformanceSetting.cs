@@ -10,5 +10,6 @@ namespace ConsoleApp_Amanda.Model
     {
         public List<string> AppName { get; set; } = new List<string>();
         public int PoolIntervalSecond { get; set; }
+        public int CpuWarningUsage { get; set; }
     }
 }
