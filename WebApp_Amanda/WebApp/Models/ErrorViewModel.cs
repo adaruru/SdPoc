@@ -1,4 +1,4 @@
-namespace WebApp_Amanda.Models
+namespace WebApp.Models
 {
     public class ErrorViewModel
     {
