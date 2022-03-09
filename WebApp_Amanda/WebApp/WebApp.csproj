@@ -17,4 +17,8 @@
     <Folder Include="Lib\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebService\WebService.csproj" />
+  </ItemGroup>
+
 </Project>

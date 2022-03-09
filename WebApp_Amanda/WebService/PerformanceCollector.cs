@@ -1,4 +1,4 @@
-﻿namespace WebService
+﻿namespace Common
 {
     public class PerformanceCollector : IPerformanceCollector
     {
