@@ -13,13 +13,17 @@ namespace ITSEmbedded.Util
     {
         public static MvcHtmlString NewTextBox(this HtmlHelper html, string name)
         {
-            var js = Scripts.Render("~/Scripts/bootstrap-datepicker/js/bootstrap-datepicker.js").ToString();
-            var css = Styles.Render("~/ImranB/Embedded/Css").ToString();
+            var js = Scripts.Render("~/ITSEmbedded/js").ToString();
+            //var css = Styles.Render("~/ITSEmbedded/*").ToString();
             var textbox = html.TextBox(name).ToString();
-            return MvcHtmlString.Create(textbox + js + css);
+            return MvcHtmlString.Create(textbox + js);
+
+
+            //var script = ITSEmbedded.GetITSLibScript();
+            //var js = new JavaScriptResult { Script = script };
+            //return  MvcHtmlString.Create(js); ;
 
         }
-
     }
 
 }
