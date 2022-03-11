@@ -27,21 +27,14 @@ namespace ITSEmbedded
         }
         private static void RegisterBundles()
         {
+
             BundleTable.VirtualPathProvider = new EmbeddedVirtualPathProvider(HostingEnvironment.VirtualPathProvider);
 
             BundleTable.Bundles.Add(new ScriptBundle("~/ITSEmbedded/js")
-                .Include("~/ITSEmbedded/test.js",
-                         "~/ITSEmbedded/bootstrap-datepicker.js"));
+                .Include("~/ITSEmbedded/test.js"));
 
             BundleTable.Bundles.Add(new StyleBundle("~/ITSEmbedded/css")
                 .Include("~/ITSEmbedded/test.css"));
-
-
-            //Stream stream = SystemReflectionUtil.GetAssemblyResourceStream(SystemReflectionUtil.ITSHtmlTemplateNameSpace + ".Scripts.test.js");
-            //using (StreamReader textStreamReader = new StreamReader(stream))
-            //{
-            //    htmlString += textStreamReader.ReadToEnd();
-            //}
         }
 
 

@@ -92,7 +92,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="test.css" />
+    <EmbeddedResource Include="Scripts\test.js" />
+    <EmbeddedResource Include="test.css" />
+    <EmbeddedResource Include="ITSEmbedded\test.css" />
+    <EmbeddedResource Include="ITSEmbedded\test.js" />
+    <EmbeddedResource Include="Content\test.css" />
     <Content Include="libman.json" />
     <EmbeddedResource Include="test.js" />
     <EmbeddedResource Include="bootstrap-datepicker.js" />

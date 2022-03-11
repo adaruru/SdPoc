@@ -1,10 +1,12 @@
-﻿using ITSEmbedded;
-using System;
+﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Web.Caching;
 using System.Web.Hosting;
 
-namespace ITSEmbedded
+namespace ImranB
 {
     public class EmbeddedVirtualPathProvider : VirtualPathProvider
     {
@@ -18,28 +20,13 @@ namespace ITSEmbedded
         public override bool FileExists(string virtualPath)
         {
             if (IsEmbeddedPath(virtualPath))
-            {
                 return true;
-            }
             else
-            {
                 return _previous.FileExists(virtualPath);
-            }
-
         }
 
         public override CacheDependency GetCacheDependency(string virtualPath, IEnumerable virtualPathDependencies, DateTime utcStart)
         {
-            //// if(virtualPath.StartsWith("~/Embedded"))
-            //if (BundleTables.Bundles.Any(b => b.Path == virtualPath))
-            //{
-            //    return null;
-            //}
-            //if (IsEmbeddedPath(virtualPath))
-            //{
-            //    return null;
-            //}
-
             if (IsEmbeddedPath(virtualPath))
             {
                 return null;
@@ -61,7 +48,6 @@ namespace ITSEmbedded
         }
         public override VirtualFile GetFile(string virtualPath)
         {
-
             if (IsEmbeddedPath(virtualPath))
             {
                 string fileNameWithExtension = virtualPath.Substring(virtualPath.LastIndexOf("/") + 1);
@@ -79,11 +65,7 @@ namespace ITSEmbedded
 
         private bool IsEmbeddedPath(string path)
         {
-            //return path.Contains("ITSEmbedded");
-            return (path == "~/ITSEmbedded/js" ||
-                path == "~/ITSEmbedded/css" ||
-                  path == "~/ITSEmbedded/test.css" ||
-                   path == "~/ITSEmbedded/test.js");
+            return path.Contains("~/ImranB/Embedded");
         }
     }
 }

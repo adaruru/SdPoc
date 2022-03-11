@@ -181,9 +181,9 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ITSEmbedded\ITSEmbedded.csproj">
-      <Project>{795c98ae-0291-4cac-91dd-37aa52f2ec33}</Project>
-      <Name>ITSEmbedded</Name>
+    <ProjectReference Include="..\SampleHelper\SampleHelper.csproj">
+      <Project>{4dbaa365-ad2a-4c2c-8ef1-ec580a4e8836}</Project>
+      <Name>SampleHelper</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
