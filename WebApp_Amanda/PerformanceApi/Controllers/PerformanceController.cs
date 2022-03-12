@@ -1,13 +1,20 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PerformanceApi.Lib;
 using WebService.Model;
 
 namespace PerformanceApi.Controllers
 {
-    //[Route("api/[controller]/[Action]")]
-    //[ApiController]
     public class PerformanceController : ControllerBase
     {
+        private readonly IPerformanceApiService _performanceSettingService;
+
+        public PerformanceController(IPerformanceApiService performanceSettingService)
+        {
+            _performanceSettingService = performanceSettingService;
+        }
+
+        //http://localhost:35200/Performance/PerformanceTest
         [HttpGet]
         public ActionResult<object> PerformanceTest()
         {
@@ -17,15 +24,25 @@ namespace PerformanceApi.Controllers
             };
             return result;
         }
-       
+
+        //http://localhost:35200/Performance/GetPerformanceSetting
         [HttpGet]
-        public ActionResult<PerformanceSetting> GetPerformance()
+        public ActionResult<PerformanceSetting> GetPerformanceSetting()
         {
-            var result = new
-            {
-                Data = "ProxyTest"
-            };
-            return result;
+            return _performanceSettingService.GetPerformanceSetting();
+        }
+        
+        [HttpPost]
+        public ActionResult<PerformanceSetting> UpdatePerformanceSetting()
+        {
+            return _performanceSettingService.GetPerformanceSetting();
+        }
+        
+        //http://localhost:35200/Performance/GetPerformanceSetting
+        [HttpGet]
+        public ActionResult<object> GetPerformance()
+        {
+            return _performanceSettingService.GetPerformance();
         }
     }
 }

@@ -1,12 +1,22 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
+using PerformanceApi;
 using PerformanceApi.Middleware;
+using WebService.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.SetBasePath(builder.Environment.ContentRootPath)
+                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
+                    .AddJsonFile($"notifysetting.json", optional: true, reloadOnChange: true)
+                    .AddEnvironmentVariables();
+
+builder.Configuration.GetSection(nameof(PerformanceSetting)).Bind(new PerformanceSetting());
+builder.Configuration.GetSection(nameof(NotifySetting)).Bind(new NotifySetting());
+
+
 //Add services to the container.
 builder.Services.AddControllers(options => options.EnableEndpointRouting = false);
-builder.Services.AddControllers(options => options.EnableEndpointRouting = false);
+builder.Services.AddLibs();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
