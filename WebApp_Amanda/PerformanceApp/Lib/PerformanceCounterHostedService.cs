@@ -25,6 +25,16 @@ namespace PerformanceApp.Lib
             _performanceSetting = performanceSettingOption.Value;
             _notifySetting = notifySettingOption.Value;
         }
+        public object GetPerformance()
+        {
+            return new
+            {
+                CpuUsage = _performanceCollector.GetCpuUsage(),
+                MemoryUsage = _performanceCollector.GetMemoryUsage(),
+                IIS = _performanceCollector.GetMemoryUsage("IIS"),
+                Calculator = _performanceCollector.GetMemoryUsage("Calculator")
+            };
+        }
 
         public Task StartAsync(CancellationToken cancellationToken)
         {

@@ -4,7 +4,8 @@ namespace PerformanceApi.Lib
 {
     public interface IPerformanceApiService
     {
-        object GetPerformance();
+        object GetPerformanceFromConsole();
+        object GetPerformanceFromService();
         PerformanceSetting GetPerformanceSetting();
     }
 }

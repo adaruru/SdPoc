@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PerformanceApi.Lib;
+using PerformanceApp.Lib;
 using PerformanceApp.Model;
 
 namespace PerformanceApi.Controllers
@@ -8,10 +10,17 @@ namespace PerformanceApi.Controllers
     public class PerformanceController : ControllerBase
     {
         private readonly IPerformanceApiService _performanceSettingService;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IConfiguration _configuration;
 
-        public PerformanceController(IPerformanceApiService performanceSettingService)
+        public PerformanceController(
+            IPerformanceApiService performanceSettingService,
+            IWebHostEnvironment webHostEnvironment,
+            IConfiguration configuration)
         {
             _performanceSettingService = performanceSettingService;
+            _webHostEnvironment = webHostEnvironment;
+            _configuration = configuration;
         }
 
         //http://localhost:35200/Performance/PerformanceTest
@@ -31,18 +40,26 @@ namespace PerformanceApi.Controllers
         {
             return _performanceSettingService.GetPerformanceSetting();
         }
-        
+
         [HttpPost]
-        public ActionResult<PerformanceSetting> UpdatePerformanceSetting()
+        public ActionResult<object> UpdatePerformanceSetting(object anySettig)
         {
-            return _performanceSettingService.GetPerformanceSetting();
+            SettingsHelpers.AddOrUpdateAppSetting(anySettig, _webHostEnvironment);
+            var results = new
+            {
+                test = _configuration["test"],
+                test2 = _configuration["test2"],
+                Message = _configuration["Message"]
+            };
+            return results;
         }
-        
+
         //http://localhost:35200/Performance/GetPerformanceSetting
         [HttpGet]
         public ActionResult<object> GetPerformance()
         {
-            return _performanceSettingService.GetPerformance();
+            return _performanceSettingService.GetPerformanceFromConsole();
         }
+
     }
 }
