@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PerformanceApi.Lib;
-using WebService.Model;
+using PerformanceApp.Model;
 
 namespace PerformanceApi.Controllers
 {

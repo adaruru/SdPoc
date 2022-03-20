@@ -1,6 +1,6 @@
 using PerformanceApi;
 using PerformanceApi.Middleware;
-using WebService.Model;
+using PerformanceApp.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,7 +1,7 @@
 ﻿using PerformanceApi.Lib;
 using System.Configuration;
-using WebService;
-using WebService.Model;
+using Service;
+using PerformanceApp.Model;
 
 namespace PerformanceApi;
 

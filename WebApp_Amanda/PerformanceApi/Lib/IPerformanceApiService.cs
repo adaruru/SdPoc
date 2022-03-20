@@ -1,4 +1,4 @@
-﻿using WebService.Model;
+﻿using PerformanceApp.Model;
 
 namespace PerformanceApi.Lib
 {
