@@ -10,9 +10,10 @@ builder.Configuration.SetBasePath(builder.Environment.ContentRootPath)
                     .AddJsonFile($"notifysetting.json", optional: true, reloadOnChange: true)
                     .AddEnvironmentVariables();
 
-builder.Configuration.GetSection(nameof(PerformanceSetting)).Bind(new PerformanceSetting());
-builder.Configuration.GetSection(nameof(NotifySetting)).Bind(new NotifySetting());
-
+//builder.Configuration.GetSection(nameof(PerformanceSetting)).Bind(new PerformanceSetting());
+//builder.Configuration.GetSection(nameof(NotifySetting)).Bind(new NotifySetting());
+builder.Services.Configure<PerformanceSetting>(options => builder.Configuration.GetSection("PerformanceSetting").Bind(options));
+builder.Services.Configure<NotifySetting>(options => builder.Configuration.GetSection("NotifySetting").Bind(options));
 
 //Add services to the container.
 builder.Services.AddControllers(options => options.EnableEndpointRouting = false);
@@ -26,7 +27,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.UseMvcWithDefaultRoute();
-app.UseRouting();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -34,7 +35,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseHsts();
 app.UseHttpsRedirection();//作業4?
+app.UseStaticFiles();
+app.UseRouting();
 app.UseAuthorization();
 
 app.UseMiddleware<ContextMiddleware>();

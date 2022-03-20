@@ -31,8 +31,8 @@ void ConfigureServices(IConfiguration configuration,
     services.Configure<PerformanceSetting>(options => configuration.GetSection("PerformanceSetting").Bind(options));
     services.Configure<NotifySetting>(options => configuration.GetSection("NotifySetting").Bind(options));
 
-    services.AddSingleton<IHostedService, PerformanceCounterHostedService>();
-    services.AddSingleton<IPerformanceCollector, PerformanceCollector>();
+    services.AddScoped<IHostedService, PerformanceCounterHostedService>();
+    services.AddScoped<IPerformanceCollector, PerformanceCollector>();
 }
 
 

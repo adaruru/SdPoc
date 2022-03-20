@@ -2,6 +2,7 @@
 using System.Configuration;
 using Service;
 using PerformanceApp.Model;
+using PerformanceApp.Lib;
 
 namespace PerformanceApi;
 
@@ -11,6 +12,7 @@ public static class DIHelper
     {
         services.AddScoped<IPerformanceCollector, PerformanceCollector>();
         services.AddScoped<IPerformanceApiService, PerformanceApiService>();
+        services.AddScoped<PerformanceCounterHostedService>();
         return services;
     }
 
