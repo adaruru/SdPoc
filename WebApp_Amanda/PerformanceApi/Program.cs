@@ -37,12 +37,14 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHsts();
-app.UseHttpsRedirection();//作業4?
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 
+//設定404
 app.UseMiddleware<ContextMiddleware>();
+
 //app.UseEndpoints(endpoints => {});
 
 app.Run();

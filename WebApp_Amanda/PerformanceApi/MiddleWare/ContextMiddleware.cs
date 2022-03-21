@@ -19,8 +19,8 @@ namespace PerformanceApi.Middleware
         public async Task Invoke(HttpContext context)
         {
             //handle request 
-            //await context.Response.WriteAsync("ContextMiddleware in. \r\n"); 
-            await _nextMiddleware(context);
+            await context.Response.WriteAsync("ContextMiddleware in. \r\n");
+            _nextMiddleware(context);
             await ErrorEventHandler(context);//作業5
         }
 
