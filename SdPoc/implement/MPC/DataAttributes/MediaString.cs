@@ -16,7 +16,6 @@ namespace Implement.MPC.DataAttributes
             Length = length;
             Order = order;
         }
-
         /// <summary>
         /// 欄位排序(由小至大)
         /// </summary>
@@ -26,6 +25,5 @@ namespace Implement.MPC.DataAttributes
         /// 文字長度(By Bytes)
         /// </summary>
         protected int Length { get; set; }
-
     }
 }

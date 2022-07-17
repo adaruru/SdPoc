@@ -52,6 +52,7 @@
     <Compile Include="MPC\DTOMedias\StoreOK.cs" />
     <Compile Include="MPC\IStoreBase.cs" />
     <Compile Include="MPC\Store.cs" />
+    <Compile Include="Parking\ParkingLot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
