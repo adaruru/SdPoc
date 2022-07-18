@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Implement.Parking
+namespace Parking
 {
     public class Program
     {
-        //Console.WriteLine("Hello, World!");
-        public void Main()
+        public static void Main()
         {
             var myParkingLot = new ParkingLot(5);
             Car c0 = new Car("000");

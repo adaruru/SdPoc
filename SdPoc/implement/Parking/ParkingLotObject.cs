@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Implement.Parking
 {
-    public class ParkingLotObject
+    public class ParkingLot
     {
-        public ParkingLotObject
-     
+
     }
     public class Car
     {
@@ -24,7 +23,8 @@ namespace Implement.Parking
         private int Length { get; set; }
     }
 
-    public class ParkingTicket {
+    public class ParkingTicket
+    {
         public int ParkingTicketNo { get; set; }
         public Car Car { get; set; }
         public DateTime EnterTime { get; set; }
@@ -38,7 +38,4 @@ namespace Implement.Parking
         Large = 3,
         ExtraLarge = 4
     }
-
-
-
 }
